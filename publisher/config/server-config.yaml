@@ -1,0 +1,17 @@
+BROKERS           :
+- "mqtt://test.mosquitto.org:1883"
+- "tcp://broker.emqx.io:1883"
+
+CERTS_REQUIRED    : false
+CERT_FILE         : "subscriber-certs/certs/server.crt"
+KEY_FILE          : "subscriber-certs/certs/server.key"
+BROKER_CA         : "subscriber-certs/certs/ca.crt"
+CLIENT_ID         : "C_MQTT_SERVER_LINUX"
+QOS               : 1
+MAX_PACKET_SIZE   : 20
+
+TOPICS            :
+- "/devices-v/v1/channel/buffered_channel"
+- "/devices-v/v1/channel/broadcast_internal"
+- "rust/mqtt"
+- "rust/test"
