@@ -1,0 +1,35 @@
+syntax = "proto3";
+option go_package = ".;ipc";
+
+enum Status {
+    PB_STATUS_UNKNOWN = 0;
+    PB_STATUS_SUCCESS = 1;
+    PB_STATUS_FAIL = 2;
+    PB_STATUS_BUSY = 3;
+    PB_STATUS_TIMEOUT = 4;
+    PB_STATUS_UNSUPPORTED = 5;
+    PB_STATUS_ACK = 6;
+}
+
+enum MqttCmd {
+    CN_DEFAULT = 0;
+    CN_PUBLISH = 1;
+    CN_SUBSCRIBE = 2;
+}
+
+enum MqttChannel {
+    CMD_DEFAULT = 0;
+    BUFFERED = 1;
+    UNBUFFERED = 2;
+}
+
+message MqttMsg {
+   uint64 timestamp = 1;
+   string key = 2;
+   string value = 3;
+}
+
+message MqttBatch {
+    MqttChannel channel = 1;
+    repeated MqttMsg msgbatch = 2;
+}
