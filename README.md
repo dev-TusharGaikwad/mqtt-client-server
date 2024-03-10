@@ -19,7 +19,10 @@ This repo contains golang implemetation of mqtt publisher and subscriber.
 > * [create your own broker](https://test.mosquitto.org/)
 
 ## HOW to generate certs:
-* 
+* go to `certs-gen` directory and run script to generate certificates for server, client and broker
+* > $ `./create_certs.sh`
+* server and client certs will be automatically copied to certs directory of respective module.
+* You can find broker certs in `etc/certs/broker/` 
 
 ## HOW to serialize your data:
 
