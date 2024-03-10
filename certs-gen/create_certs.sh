@@ -22,18 +22,35 @@ function generate_client () {
    openssl x509 -req -sha256 -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365
 }
 
-function copy_keys_to_broker () {
-   sudo cp ca.crt ./etc/certs/
-   sudo cp server.crt ./etc/certs/
-   sudo cp server.key ./etc/certs/
+function copy_server_certs () {
+   sudo cp server.crt ./etc/certs/server
+   sudo cp server.csr ./etc/certs/server
+   sudo cp server.key ./etc/certs/server
 
-   sudo chmod 777 ./etc/certs/*
+   sudo chmod 777 ./etc/certs/server/*
 
-   sudo cp -r ./etc/certs/ ../publisher/publisher-certs
+   sudo cp -r ./etc/certs/server/* ../publisher/publisher-certs
    sudo chmod 777 ../publisher/publisher-certs/certs/*
 
-   sudo cp -r ./etc/certs/ ../subscriber/subscriber-certs
+}
+
+function copy_client_certs() {
+   sudo cp client.crt ./etc/certs/client
+   sudo cp client.csr ./etc/certs/client
+   sudo cp client.key ./etc/certs/client
+
+   sudo chmod 777 ./etc/certs/client/*
+   
+   sudo cp -r ./etc/certs/client/* ../subscriber/subscriber-certs
    sudo chmod 777 ../subscriber/subscriber-certs/certs/*
+}
+
+function copy_broker_certs() {
+   sudo cp ca.crt ./etc/certs/broker
+   sudo cp ca.key ./etc/certs/broker
+   sudo cp ca.srl ./etc/certs/broker
+
+   sudo chmod 777 ./etc/certs/broker/*
 
 }
 
@@ -44,5 +61,7 @@ function clean_certs() {
 generate_CA
 generate_server
 generate_client
-copy_keys_to_broker
+copy_server_certs
+copy_client_certs
+copy_broker_certs
 clean_certs
