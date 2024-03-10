@@ -30,7 +30,7 @@ function copy_server_certs () {
    sudo chmod 777 ./etc/certs/server/*
 
    sudo cp -r ./etc/certs/server/* ../publisher/publisher-certs
-   sudo chmod 777 ../publisher/publisher-certs/certs/*
+   sudo chmod 777 ../publisher/publisher-certs/*
 
 }
 
@@ -42,7 +42,7 @@ function copy_client_certs() {
    sudo chmod 777 ./etc/certs/client/*
    
    sudo cp -r ./etc/certs/client/* ../subscriber/subscriber-certs
-   sudo chmod 777 ../subscriber/subscriber-certs/certs/*
+   sudo chmod 777 ../subscriber/subscriber-certs/*
 }
 
 function copy_broker_certs() {
